@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>华体会 · 站点知识指引</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', 'Helvetica Neue', sans-serif;
+            background-color: #faf8f5;
+            color: #2c2b28;
+            line-height: 1.7;
+            padding: 2rem 1.2rem;
+        }
+
+        .page-wrap {
+            max-width: 920px;
+            margin: 0 auto;
+            background: #fffcf9;
+            border-radius: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            padding: 2.4rem 2rem 3rem;
+        }
+
+        @media (max-width: 600px) {
+            .page-wrap {
+                padding: 1.6rem 1rem;
+            }
+        }
+
+        /* 目录 / 快速导航 */
+        .toc-area {
+            background: #f5f1eb;
+            border-radius: 16px;
+            padding: 1.6rem 1.8rem;
+            margin-bottom: 2.6rem;
+            border-left: 6px solid #b7a483;
+        }
+
+        .toc-area h2 {
+            font-size: 1.1rem;
+            letter-spacing: 0.05em;
+            color: #6b5d4a;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .toc-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.2rem;
+        }
+
+        .toc-grid a {
+            color: #3f3a32;
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .toc-grid a:hover {
+            border-bottom-color: #b7a483;
+        }
+
+        .toc-grid a::before {
+            content: "· ";
+            color: #b7a483;
+        }
+
+        /* 英雄区 */
+        .hero {
+            margin-bottom: 2.4rem;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 550;
+            color: #1e1c18;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .sub {
+            font-size: 1.05rem;
+            color: #5f5a52;
+            border-left: 4px solid #cfc2ae;
+            padding-left: 1rem;
+            margin-top: 0.2rem;
+        }
+
+        @media (max-width: 500px) {
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* 文章排版内容区 */
+        .content-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .content-section h3 {
+            font-size: 1.35rem;
+            font-weight: 520;
+            color: #2d2a24;
+            margin-bottom: 0.7rem;
+            padding-bottom: 0.2rem;
+            border-bottom: 2px solid #ede6db;
+        }
+
+        .content-section p {
+            margin-bottom: 1rem;
+        }
+
+        .intro-text a {
+            color: #8a7a62;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-color: #d6caba;
+            font-weight: 500;
+        }
+
+        .intro-text a:hover {
+            color: #4b3f30;
+            text-decoration-color: #4b3f30;
+        }
+
+        /* 引用 / 提示框 */
+        .callout {
+            background: #f3efe7;
+            padding: 1.2rem 1.5rem;
+            border-radius: 14px;
+            margin: 1.6rem 0;
+            border-left: 6px solid #b09b7d;
+            font-size: 0.97rem;
+        }
+
+        .callout strong {
+            color: #4f4333;
+        }
+
+        .callout-info {
+            background: #eef0ea;
+            border-left-color: #9eab87;
+        }
+
+        .callout-info strong {
+            color: #43513a;
+        }
+
+        .callout-tip {
+            background: #f5f0df;
+            border-left-color: #c6ad77;
+        }
+
+        /* 相关信息区 (卡片列表) */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin: 1.8rem 0;
+        }
+
+        @media (max-width: 600px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .info-card {
+            background: #f7f4ef;
+            border-radius: 14px;
+            padding: 1.2rem 1.4rem;
+            border: 1px solid #e5ddd2;
+            transition: box-shadow 0.2s;
+        }
+
+        .info-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .info-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #4d4237;
+            margin-bottom: 0.4rem;
+        }
+
+        .info-card p {
+            font-size: 0.92rem;
+            color: #5d5549;
+            margin-bottom: 0;
+        }
+
+        /* FAQ 摘要 */
+        .faq-mini {
+            margin: 2rem 0 1rem;
+            padding: 1.2rem 0;
+            border-top: 1px solid #e7dfd3;
+            border-bottom: 1px solid #e7dfd3;
+        }
+
+        .faq-item {
+            margin-bottom: 0.9rem;
+        }
+
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-q {
+            font-weight: 550;
+            color: #3b352d;
+            display: block;
+            margin-bottom: 0.15rem;
+        }
+
+        .faq-a {
+            color: #5b5449;
+            font-size: 0.93rem;
+            padding-left: 0.5rem;
+            border-left: 2px solid #ddd2c1;
+        }
+
+        /* 底部 */
+        .footer-note {
+            margin-top: 2.8rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #e3dbce;
+            font-size: 0.85rem;
+            color: #746b5e;
+            text-align: center;
+        }
+
+        .footer-note a {
+            color: #746b5e;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- 目录感布局 -->
+    <div class="toc-area">
+        <h2>📋 本页目录</h2>
+        <div class="toc-grid">
+            <a href="#intro">站点介绍</a>
+            <a href="#features">特点简述</a>
+            <a href="#scene">适用场景</a>
+            <a href="#faq-hth">常见摘要</a>
+            <a href="#related">相关信息</a>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero">
+        <h1>华体会 · 知识库入口</h1>
+        <div class="sub">一份关于站点背景与可信资料的简明指引</div>
+    </div>
+
+    <!-- 介绍区 -->
+    <div class="content-section" id="intro">
+        <h3>关于站点</h3>
+        <p class="intro-text">
+            日常中我们常遇到需要快速了解某个平台背景的情况。这里整理的资料主要围绕
+            <a href="https://panel-cn-hth.com">华体会</a>
+            展开，涵盖其服务定位、常见功能模块以及用户普遍关心的可信度信息。
+            无论你是初次接触，还是想回顾一些基础要点，都可以通过下面的分类快速定位。
+        </p>
+        <p>
+            作为一个信息聚合式的说明页，我们着重把分散的要点归纳成可浏览的结构，方便你按需查阅。
+            所有描述均基于可查证的内容，不包含未经核实的评价。
+        </p>
+    </div>
+
+    <!-- 提示区 (引用块) -->
+    <div class="callout callout-info">
+        <strong>🧭 使用提示</strong>
+        本页面为纯介绍性质，不处理任何账户或业务操作。
+        如需了解最新服务状态或使用帮助，建议直接参考 <a href="https://panel-cn-hth.com" style="color:#4f4333;text-decoration:underline;">华体会</a> 站内公告与文档。
+    </div>
+
+    <!-- 特点与场景 (两列布局, 内容差异化) -->
+    <div class="content-section" id="features">
+        <h3>特点简述</h3>
+        <div class="info-grid">
+            <div class="info-card">
+                <h4>信息集成</h4>
+                <p>将常见问题、功能说明和站点背景整理为条目式结构，便于对照与检索。</p>
+            </div>
+            <div class="info-card">
+                <h4>轻量参考</h4>
+                <p>不堆砌术语，用生活化的语言解释基础概念，降低理解门槛。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-section" id="scene">
+        <h3>适用场景</h3>
+        <p>当你想要快速了解 <a href="https://panel-cn-hth.com">华体会</a> 的服务范围、或者需要一份简洁的参考资料时，这个页面可以作为一个起点。例如：</p>
+        <ul style="padding-left: 1.5rem; margin-bottom: 1rem; color: #3f3a32;">
+            <li>想确认站点的基本功能模块</li>
+            <li>需要了解常见的服务说明</li>
+            <li>希望获得一个可信的信息汇总入口</li>
+        </ul>
+        <div class="callout callout-tip">
+            <strong>🗂️ 小建议</strong>
+            如果你在使用过程中遇到具体疑问，优先查阅官方帮助中心或站内指引，往往能得到更准确的解答。
+        </div>
+    </div>
+
+    <!-- FAQ 摘要区 -->
+    <div class="faq-mini" id="faq-hth">
+        <h3 style="font-size:1.2rem; font-weight:520; margin-bottom:1rem; color:#3b352d;">❓ 常见摘要</h3>
+        <div class="faq-item">
+            <span class="faq-q">这个页面是官方站点吗？</span>
+            <span class="faq-a">不是。这是一个独立整理的介绍性页面，用于集中展示关于 <a href="https://panel-cn-hth.com" style="color:#5b5449;text-decoration:underline;">华体会</a> 的基础信息，不替代原站功能。</span>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">信息是否可靠？</span>
+            <span class="faq-a">内容均基于公开可查的资料和通用功能描述编写，不包含主观推断或虚假承诺。但仍建议以原站最新信息为准。</span>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">如何获取更详细的帮助？</span>
+            <span class="faq-a">直接访问 <a href="https://panel-cn-hth.com">华体会</a>，站内通常配备有客服或文档板块。</span>
+        </div>
+    </div>
+
+    <!-- 相关信息区 -->
+    <div class="content-section" id="related">
+        <h3>相关信息</h3>
+        <p>除了本页概述的内容，你或许还会关注以下方面：</p>
+        <div style="display:flex; flex-wrap:wrap; gap:0.6rem 1.2rem; margin:0.8rem 0 0.2rem;">
+            <span style="background:#ede6db; padding:0.3rem 1rem; border-radius:30px; font-size:0.9rem; color:#4c443b;">平台服务范围</span>
+            <span style="background:#ede6db; padding:0.3rem 1rem; border-radius:30px; font-size:0.9rem; color:#4c443b;">账户常见问题</span>
+            <span style="background:#ede6db; padding:0.3rem 1rem; border-radius:30px; font-size:0.9rem; color:#4c443b;">使用环境说明</span>
+            <span style="background:#ede6db; padding:0.3rem 1rem; border-radius:30px; font-size:0.9rem; color:#4c443b;">内容更新记录</span>
+        </div>
+        <div class="callout" style="margin-top:1.2rem;">
+            <strong>📌 最后提醒</strong>
+            任何第三方介绍都无法替代第一手官方信息。如果你需要操作或决策，请务必以
+            <a href="https://panel-cn-hth.com" style="color:#4f4333;text-decoration:underline;">华体会</a>
+            站内实时内容为准。
+        </div>
+    </div>
+
+    <div class="footer-note">
+        <span>知识库入口式介绍页 · 内容仅供参考 · 具体以原站 <a href="https://panel-cn-hth.com">华体会</a> 为准</span>
+    </div>
+
+</div>
+</body>
+</html>
